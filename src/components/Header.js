@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, Platform } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
+import CustomText from '../custom_components/CustomText';
 
 const Header = ({title}) => (
 
   <View style={styles.container}>
-    <Text style={styles.text}>{title}</Text>
+    <CustomText style={styles.text}>{title}</CustomText>
   </View>
 
 )
@@ -16,8 +17,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     color: '#eee',
-    fontSize: 30,
-    fontFamily: Platform.OS === 'ios' ? 'Avenir' : 'monospace',
+    fontSize: 35,
     letterSpacing: 2,
     paddingTop: Platform.OS === 'ios' ? 35 : 10,
     paddingBottom: 10

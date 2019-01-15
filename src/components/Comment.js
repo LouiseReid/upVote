@@ -1,13 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
+import CustomText from '../custom_components/CustomText';
 
 const Comment = ({comment}) => (
 
     <View style={styles.listItem}>
-      <Text>{comment.item.user_name}</Text>
-      <Text>{comment.item.date}</Text>
-      <Text>{comment.item.comment}</Text>
-      <Text>{comment.item.likes}</Text>
+      <CustomText style={styles.userName}>{comment.item.user_name}</CustomText>
+      <CustomText style={styles.date}>{comment.item.date}</CustomText>
+      <CustomText style={styles.comment}>{comment.item.comment}</CustomText>
+      <CustomText style={styles.likes}>{comment.item.likes}</CustomText>
     </View>
 )
 
@@ -16,7 +17,19 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 5,
     padding: 10,
-    backgroundColor: '#eee'
+    backgroundColor: '#eee',
+  },
+  userName: {
+
+  },
+  date: {
+
+  },
+  comment: {
+
+  },
+  likes: {
+
   }
 })
 
