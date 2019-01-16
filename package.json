@@ -9,6 +9,7 @@
     "android": "react-native run-android"
   },
   "dependencies": {
+    "lodash.sortby": "^4.7.0",
     "react": "16.6.3",
     "react-native": "0.57.8",
     "react-native-vector-icons": "^6.1.0"
