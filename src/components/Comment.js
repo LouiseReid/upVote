@@ -1,30 +1,44 @@
 import React from 'react';
-import { View, StyleSheet, Platform } from 'react-native';
+import { View, StyleSheet, Platform,  } from 'react-native';
 import CustomText from '../custom_components/CustomText';
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const Comment = ({comment}) => (
+const Comment = ({comment, refresh}) => {
 
+  function handleUpVote() {
+    comment.item.likes += 1
+    refresh()
+  }
+
+  return (
     <View style={styles.listItem}>
       <CustomText style={styles.userName}>{comment.item.user_name}</CustomText>
       <CustomText style={styles.date}>{comment.item.date}</CustomText>
       <CustomText style={styles.comment}>{comment.item.comment}</CustomText>
       <View style={styles.likesContainer}>
-        <Icon
+        <Icon.Button
           name={Platform.OS === 'ios' ? 'ios-thumbs-up' : 'md-thumbs-up'}
           size={15}
-          style={styles.thumbIcon}
+          underlayColor='transparent'
+          backgroundColor='transparent'
+          color='#2b4c6b'
+          iconStyle={styles.icon}
+          onPress={handleUpVote}
         />
-        <Icon
+        <Icon.Button
           name={Platform.OS === 'ios' ? 'ios-thumbs-down' : 'md-thumbs-down'}
           size={15}
-          style={styles.thumbIcon}
+          underlayColor='transparent'
+          backgroundColor='transparent'
+          color='#2b4c6b'
+
         />
         <CustomText style={styles.likes}>{comment.item.likes}</CustomText>
       </View>
     </View>
-)
+  )
 
+}
 const styles = StyleSheet.create({
   listItem: {
     width: '100%',
@@ -42,8 +56,8 @@ const styles = StyleSheet.create({
     top: 4
   },
   comment: {
-    paddingTop: 5,
-    paddingBottom: 5
+    paddingTop: 10,
+    paddingBottom: 10
   },
   likesContainer: {
     flexDirection: 'row',
@@ -55,9 +69,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 15
   },
-  thumbIcon: {
-    marginLeft: 15,
-    color:  '#2b4c6b'
+  icon: {
+    marginLeft: 15
   }
 })
 

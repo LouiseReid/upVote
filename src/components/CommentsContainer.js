@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
-import { FlatList, Text, StyleSheet } from 'react-native';
+import { FlatList, Text, StyleSheet, LayoutAnimation } from 'react-native';
 import Comment from './Comment'
 
-const CommentsContainer = (props) => {
+class CommentsContainer extends React.Component {
 
+  state = {
+    refresh: true
+  }
+
+  forceRender = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+    this.setState({
+      refresh: !this.state.refresh
+    })
+  }
+
+  render(){
   return (
     <FlatList
       style={styles.listContainer}
-      data={props.comments}
+      data={this.props.comments}
+      extraData={this.state.refresh}
       renderItem={(item) => (
         <Comment
           comment={item}
+          refresh={this.forceRender}
         />
       )}
       keyExtractor={(item, index) => index.toString()}
@@ -18,6 +32,7 @@ const CommentsContainer = (props) => {
   )
 };
 
+}
 const styles = StyleSheet.create({
   listContainer: {
     width: '100%',
