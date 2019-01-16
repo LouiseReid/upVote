@@ -20,16 +20,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
   },
   userName: {
-
+    color:  '#2b4c6b',
+    fontWeight: 'bold'
   },
   date: {
-
+    position: 'absolute',
+    right: 4,
+    top: 4
   },
   comment: {
-
+    paddingTop: 5,
+    paddingBottom: 5
   },
   likes: {
-
+    alignSelf: 'flex-end',
+    color:  '#2b4c6b',
+    fontWeight: 'bold'
   }
 })
 
