@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     color:  '#2b4c6b',
     fontWeight: 'bold',
-    marginLeft: 15
+    paddingLeft: 15
   },
   icon: {
     marginLeft: 15

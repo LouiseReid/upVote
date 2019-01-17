@@ -1,25 +1,41 @@
 import React, { Component } from 'react';
 import { FlatList, Text, StyleSheet, LayoutAnimation } from 'react-native';
-import Comment from './Comment'
+import Comment from './Comment';
+import { data } from '../data';
+import sortBy from 'lodash.sortby';
+
 
 class CommentsContainer extends React.Component {
 
   state = {
+    comments: [],
     refresh: true
   }
 
   forceRender = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-    this.setState({
-      refresh: !this.state.refresh
+    this.setState( prevState =>{
+      return {
+        comments: sortBy(prevState.comments, 'likes').reverse(),
+        refresh: !this.state.refresh
+      }
     })
   }
+
+  componentDidMount(){
+    const sortedData = sortBy(data, 'likes').reverse()
+    this.setState({
+      comments: sortedData
+    })
+  }
+
+
 
   render(){
   return (
     <FlatList
       style={styles.listContainer}
-      data={this.props.comments}
+      data={this.state.comments}
       extraData={this.state.refresh}
       renderItem={(item) => (
         <Comment
