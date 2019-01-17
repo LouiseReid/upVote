@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Platform,  } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
 import CustomText from '../custom_components/CustomText';
 import Icon from 'react-native-vector-icons/Ionicons'
 
@@ -8,6 +8,13 @@ const Comment = ({comment, refresh}) => {
   function handleUpVote() {
     comment.item.likes += 1
     refresh()
+  }
+
+  function handleDownVote() {
+    if(comment.item.likes > 0){
+      comment.item.likes -= 1
+      refresh()
+    }
   }
 
   return (
@@ -31,7 +38,7 @@ const Comment = ({comment, refresh}) => {
           underlayColor='transparent'
           backgroundColor='transparent'
           color='#2b4c6b'
-
+          onPress={handleDownVote}
         />
         <CustomText style={styles.likes}>{comment.item.likes}</CustomText>
       </View>
@@ -65,7 +72,7 @@ const styles = StyleSheet.create({
   },
   likes: {
     alignSelf: 'flex-end',
-    color:  '#2b4c6b',
+    color: '#2b4c6b',
     fontWeight: 'bold',
     paddingLeft: 15
   },

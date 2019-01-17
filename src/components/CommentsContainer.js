@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, Text, StyleSheet, LayoutAnimation } from 'react-native';
+import { FlatList, Text, StyleSheet, LayoutAnimation, UIManager } from 'react-native';
 import Comment from './Comment';
 import { data } from '../data';
 import sortBy from 'lodash.sortby';
@@ -13,7 +13,10 @@ class CommentsContainer extends React.Component {
   }
 
   forceRender = () => {
+    UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+
+
     this.setState( prevState =>{
       return {
         comments: sortBy(prevState.comments, 'likes').reverse(),
@@ -28,7 +31,6 @@ class CommentsContainer extends React.Component {
       comments: sortedData
     })
   }
-
 
 
   render(){
